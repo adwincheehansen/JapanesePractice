@@ -39,7 +39,7 @@ class System{
 
     getRandom(){
         
-        if (this.done.length == this.write.length){
+        if (this.done.length == this.write.length || (this.type == "hiragana" && this.done.length == (this.write.length-2))){
             document.body.innerHTML = "";
             const TextElement = document.createElement("h1");
             TextElement.className = "center"
@@ -57,6 +57,7 @@ class System{
                     const wrongText = document.createElement("h3")
                     wrongText.innerHTML = `${count}: ${this.write[x]}  :  ${this.writeRomanji[x]}`
                     wrongDiv.appendChild(wrongText)
+                    count += 1
                 })
                 document.body.appendChild(wrongDiv);
             }
@@ -64,7 +65,7 @@ class System{
         }
 
         const random = Math.floor(Math.random() * this.write.length);
-        if (random in this.done || (this.write[random].includes('w') && this.type == "hiragana")){
+        if (this.done.includes(random) || this.write[random].includes('w')){
             return this.getRandom();
         }
         
