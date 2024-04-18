@@ -38,7 +38,7 @@ class System{
     }
 
     getRandom(){
-        const random = Math.floor(Math.random() * this.write.length);
+        
         if (this.done.length == this.write.length){
             document.body.innerHTML = "";
             const TextElement = document.createElement("h1");
@@ -60,8 +60,11 @@ class System{
                 })
                 document.body.appendChild(wrongDiv);
             }
+            return
         }
-        if (this.write in this.done || (this.write[random].includes('w') && this.type == "hiragana")){
+
+        const random = Math.floor(Math.random() * this.write.length);
+        if (random in this.done || (this.write[random].includes('w') && this.type == "hiragana")){
             return this.getRandom();
         }
         
