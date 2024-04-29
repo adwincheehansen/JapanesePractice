@@ -8,10 +8,38 @@
         <h2 class="center" style="color:white">Choose one.</h2>
         <br>
     <div class="center">
-        <a href="./hiragana.html"><button class="center">Hiragana</button></a><h1></h1>
-        <a href="./katakana.html"><button class="center">Katakana</button></a>
+        <a href="./hiragana.html" id="hiraganaLink"><button class="center">Hiragana</button></a><h1></h1>
+        <a href="./katakana.html" id="katakanaLink"><button class="center">Katakana</button></a><h1></h1>
+        <a href="./fullKana.html" id="mixedLink"><button class="center">Hiragana & Katakana</button></a><h1></h1><h1></h1>
+        <h2 class ="center">Type Mode</h2><h1></h1>
+        <div class="center">
+            <label class="switch" for="checkbox">
+              <input type="checkbox" id="checkbox" onclick="TypeMode(this)"/>
+              <div class="slider round"></div>
+            </label>
+          </div><h1></h1>
+          
     </div>
-        
+    
+    <script>
+        function TypeMode(checkboxElem) {
+            if (checkboxElem.checked) {
+                ['hiraganaLink', 'katakanaLink', 'mixedLink'].forEach((link)=>{
+                    let element = document.getElementById(link);
+                    let newURL = new URL(element.href);
+                    newURL.searchParams.append("typeMode", true);
+                    element.href = newURL;
+                })
+            } else {
+                ['hiraganaLink', 'katakanaLink', 'mixedLink'].forEach((link)=>{
+                    let element = document.getElementById(link);
+                    let newURL = new URL(element.href);
+                    newURL.searchParams.delete('typeMode');
+                    element.href = newURL;
+                })
+            }
+        }
+    </script>
     
 
 </body>
